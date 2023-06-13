@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background: #0f142a;
+    color: #f5fafa;
+}
+.head{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.hedaing{
+    display: flex;
+}
+.heading>h2{
+    display: inline-block;
+    margin-top: 20px;
+    color: #c4770d;
+}
+.heading1{
+    transform: translateX(-250%);
+    animation: heading1-animation 1.5s ease-in-out forwards;
+}
+@keyframes heading1-animation{
+    100%{
+        transform: translate(0);
+    }
+}
+.heading2{
+    transform: translateX(250%);
+    animation: heading2-animation 1.5s ease-in-out forwards;
+}
+@keyframes heading2-animation{
+    100%{
+        transform: translate(0);
+    }
+}
+.calc{
+    border: 3px solid #fff;
+    border-radius: 8px;
+    margin-top: 15px;
+    padding: 5px;
+}
+.buttons>button{
+    height: 55px;
+    width: 55px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #0f142a;
+    color: #f5fafa;
+    font-size: 1.2rem;
+    box-shadow: -4px -4px 6px rgba(255, 255, 255, 0.1), 5px 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.buttons>.equal{
+    background: #c4770d;
+    color: #283054;
+}
+.buttons>.operator{
+    background: #283054;
+    color: #c4770d;
+}
+.text-display{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.text-display input{
+    height: 40px;
+    width: 250px;
+    color: #000;
+    font-size: 1.3rem;
+    justify-items: flex-start;
+    margin: 10px;
+    text-align: right;
+}
+
+@media (max-width: 768px){
+    .heading1, .heading2{
+        transform: translateX(0);
+        text-align: center;
+        font-size: 1rem;
+        margin-top: 50px;
+    }
+}
