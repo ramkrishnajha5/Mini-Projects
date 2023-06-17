@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    background: #d1dce0;
+    color: #333;
+}
+#main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#main>h1{
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+}
+#main>h1 span{
+    margin: 0 18px;
+    display: flex;
+    align-items: center;
+}
+#main>h1 span img{
+    transition: 0.3s ease;
+}
+#main>#encdec-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    width: 28%;
+    margin: 35px;
+    background: #e3e6e7;
+    border-radius: 8px;
+}
+#main>#encdec-container h3{
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+#enc-btn{
+    background: #f8f8f2;
+}
+#encdec-container h3 span{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+#encdec-container h3 span img{
+    height: 24px;
+}
+
+#encryption{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+#encryption h4{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #757373;
+}
+#encryption textarea{
+    width: 100%;
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 17px;
+    padding: 6px 8px;
+    outline: none;
+    background: #f8f8f2;
+    margin-bottom: 16px;
+    color: #333;
+}
+#encryption input{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 17px;
+    padding: 6px 8px;
+    outline: none;
+    background: #f8f8f2;
+    margin-bottom: 24px;
+    color: #333;
+}
+#encryption .btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#encryption button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    background: #fbc233;
+    border: none;
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+}
+button>span{
+    display: flex;
+    margin-right: 10px;
+}
+button>span img{
+    height: 24px;
+}
+#decryption{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    display: none;
+}
+#decryption h4{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #757373;
+}
+#decryption textarea{
+    width: 100%;
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 17px;
+    padding: 6px 8px;
+    outline: none;
+    background: #f8f8f2;
+    margin-bottom: 16px;
+    color: #333;
+}
+#decryption input{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 17px;
+    padding: 6px 8px;
+    outline: none;
+    background: #f8f8f2;
+    margin-bottom: 24px;
+    color: #333;
+}
+#decryption .btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#decryption button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    background: #fbc233;
+    border: none;
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+}
+button>span{
+    display: flex;
+    margin-right: 10px;
+}
+button>span img{
+    height: 24px;
+}
+
+@media screen and (max-width: 768px) {
+    #main>h1{
+        font-size: 30px;
+    }
+    #main>#encdec-container{
+        width: 92%;
+    }
+    #encryption, #decryption{
+        width: 95%;
+    }
+    #encryption button, #decryption button{
+        width: 60%;
+    }
+}
