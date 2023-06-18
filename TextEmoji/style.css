@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    height: 100vh;
+    height: 120vh;
     width: 100vw;
     background: #d1dce0;
     color: #333;
@@ -193,6 +193,16 @@ button>span{
 button>span img{
     height: 24px;
 }
+#result{
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    background: #e3e6e7;
+    border: 1px solid #f8f8f2;
+    width: 45%;
+    margin-top: 30px;
+    display: none;
+}
 
 @media screen and (max-width: 768px) {
     #main>h1{
@@ -201,7 +211,7 @@ button>span img{
     #main>#encdec-container{
         width: 92%;
     }
-    #encryption, #decryption{
+    #encryption, #decryption, #result{
         width: 95%;
     }
     #encryption button, #decryption button{
