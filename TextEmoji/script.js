@@ -1,3 +1,5 @@
+document.querySelector("#password").style.display = "none"
+document.querySelector("#finalpassword").style.display = "none"
 function btnClicking(){
     document.querySelector("#dec-btn").addEventListener("click", function(){
         document.querySelector("#decryption").style.display = "block"
@@ -6,6 +8,7 @@ function btnClicking(){
         document.querySelector("#dec-btn").style.backgroundColor = "#f8f8f2"
         document.querySelector("#main>h1 span img").style.rotate = "180deg"
         document.querySelector("#result").style.display = "none"
+
     })
     document.querySelector("#enc-btn").addEventListener("click", function(){
         document.querySelector("#encryption").style.display = "block"
@@ -16,6 +19,7 @@ function btnClicking(){
         document.querySelector("#result").style.display = "none"
 
     })
+
     document.querySelector("#encrypt-btn").addEventListener("click", function(){
         document.querySelector("#result").style.display = "block"
     })
@@ -33,7 +37,7 @@ function encryption(){
         
         const str = input.split("")
         str.forEach(element => {
-            value += `&#128${element.charCodeAt()}`
+            value += `&#128${element.charCodeAt()} `
         });
 
         document.querySelector("#result").innerHTML = value
@@ -51,4 +55,44 @@ function encryption(){
     })
 }
 encryption()
+
+function decryption(){
+    document.querySelector("#decrypt-btn").addEventListener("click", function(){
+        var value1 = ""
+        var input1 = document.querySelector("#emojimsg").value
+        var pass1 = document.querySelector("#finalpassword").value
+        var user = JSON.parse(localStorage.getItem('data1'))
+
+        var str1 = input1.split(" ")
+        str1.forEach(element => {
+                value1 += `&#${(element.codePointAt(0))} `
+        });
+        console.log(value1)
+
+        var found;
+        for(let i of user){
+            if(i.value == value1){
+                found = i;
+                console.log(i)
+            }
+        }
+
+        if (found.value === value1) {
+            document.querySelector("#result").style.display = `block`
+            document.querySelector("#result").style.color = `#333`
+            document.querySelector("#result").innerHTML = found.input
+        } else if(user(user.length).pass === pass1){
+            document.querySelector("#result").style.display = `block`
+            document.querySelector("#result").style.color = `red`
+            document.querySelector("#result").innerHTML = "Wrong password!"
+        } 
+        else {
+            document.querySelector("#result").style.display = `block`
+            document.querySelector("#result").style.color = `red`
+            document.querySelector("#result").innerHTML = "Input not matched!"
+        }
+    })
+}
+
+decryption()
 
