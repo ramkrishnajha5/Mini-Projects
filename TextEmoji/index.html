@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TextEmoji</title>
+    <!-- CSS File -->
     <link rel="stylesheet" href="style.css">
+    <!-- JS File -->
+    <script src="script.js" defer></script>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpOURGmwxf3sxQaKQlnTh51sY34BcbiD47Ug&s">
 </head>
 <body>
     <div id="main">
@@ -18,7 +23,7 @@
             <h4>1. Type a Message</h4>
             <textarea placeholder="Write Your Text Here" name="" id="txtmsg" cols="30" rows="10"></textarea>
             <!-- <h4>2. Set a Password</h4> -->
-            <input placeholder="E.g. 1234" type="password" name="" id="password">
+            <!-- <input placeholder="E.g. 1234" type="password" name="" id="password"> -->
             <div class="btn">
                 <button id="encrypt-btn"><span><img src="./img/lock-solid-24.png" alt=""></span>Encrypt Text</button>
             </div>
@@ -27,15 +32,12 @@
             <h4>1. Paste encrypted Emojis</h4>
             <textarea placeholder="Paste Your encryptrd emojis here" name="" id="emojimsg" cols="30" rows="10"></textarea>
             <!-- <h4>2. Type Your Password</h4> -->
-            <input type="password" name="" id="finalpassword">
+            <!-- <input type="password" name="" id="finalpassword"> -->
             <div class="btn">
                 <button id="decrypt-btn"><span><img src="./img/lock-open-solid-24.png" alt=""></span>Decrypt Emojis</button>
             </div>
         </div>
         <div id="result"></div>
     </div>
-
-    
-    <script src="script.js"></script>
 </body>
 </html>
