@@ -1,6 +1,9 @@
 const list = document.querySelector(".todo-list input[type=text]");
 const todoSection = document.querySelector(".todo-list");
 
+let localStorageData = localStorage.getItem("items")? JSON.parse(localStorage.getItem("items")):"";
+document.querySelector(".list-items").innerHTML = localStorageData;
+
 todoSection.addEventListener("submit", function(event){
     event.preventDefault();
     const listValue = list.value;
@@ -31,5 +34,16 @@ document.querySelector(".list-items").addEventListener("click",function(event){
     else{
         event.target.parentNode.previousElementSibling.lastElementChild.firstElementChild.style.display = "none";
         event.target.textContent = "Done";
+    }
+})
+
+//for reset and save
+document.querySelector(".resetbtn").addEventListener("click",function(event){
+    if(event.target.classList.contains("reset")){
+       document.querySelector(".list-items").innerHTML = "";
+       localStorage.clear();
+    }
+    else{
+        localStorage.setItem("items", JSON.stringify(document.querySelector(".list-items").innerHTML));
     }
 })
