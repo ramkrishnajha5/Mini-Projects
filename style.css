@@ -49,6 +49,7 @@ header{
   border-radius: 25px;
 }
 .card{
+  height: 550px;
   width: 340px;
   border-radius: 25px;
   background-color: #FFF;
