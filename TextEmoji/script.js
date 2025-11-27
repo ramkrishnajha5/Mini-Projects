@@ -1,98 +1,196 @@
-document.querySelector("#password").style.display = "none"
-document.querySelector("#finalpassword").style.display = "none"
-function btnClicking(){
-    document.querySelector("#dec-btn").addEventListener("click", function(){
-        document.querySelector("#decryption").style.display = "block"
-        document.querySelector("#encryption").style.display = "none"
-        document.querySelector("#enc-btn").style.backgroundColor = "#e3e6e7"
-        document.querySelector("#dec-btn").style.backgroundColor = "#f8f8f2"
-        document.querySelector("#main>h1 span img").style.rotate = "180deg"
-        document.querySelector("#result").style.display = "none"
+console.log("TextEmoji Converter Loaded");
 
-    })
-    document.querySelector("#enc-btn").addEventListener("click", function(){
-        document.querySelector("#encryption").style.display = "block"
-        document.querySelector("#decryption").style.display = "none"
-        document.querySelector("#dec-btn").style.backgroundColor = "#e3e6e7"
-        document.querySelector("#enc-btn").style.backgroundColor = "#f8f8f2"
-        document.querySelector("#main>h1 span img").style.rotate = "0deg"
-        document.querySelector("#result").style.display = "none"
+// Character counters
+const txtmsg = document.getElementById("txtmsg");
+const emojimsg = document.getElementById("emojimsg");
+const encCounter = document.getElementById("enc-counter");
+const decCounter = document.getElementById("dec-counter");
 
-    })
+// Update character counters
+txtmsg.addEventListener("input", () => {
+    encCounter.textContent = `${txtmsg.value.length} characters`;
+});
 
-    document.querySelector("#encrypt-btn").addEventListener("click", function(){
-        document.querySelector("#result").style.display = "block"
-    })
-    document.querySelector("#decrypt-btn").addEventListener("click", function(){
-        document.querySelector("#result").style.display = "block"
-    })
+emojimsg.addEventListener("input", () => {
+    decCounter.textContent = `${emojimsg.value.length} characters`;
+});
+
+// Show toast notification
+function showToast(message, success = true) {
+    const toast = document.createElement("div");
+    toast.classList.add("toast");
+    toast.textContent = message;
+    toast.style.background = success
+        ? "rgba(0, 255, 136, 0.95)"
+        : "rgba(255, 107, 107, 0.95)";
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = "slideInRight 0.3s ease-out reverse";
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
 }
 
-btnClicking()
-function encryption(){
-    document.querySelector("#encrypt-btn").addEventListener("click", function(){
-        var value = ""
-        var input = document.getElementById("txtmsg").value
-        var password = document.getElementById("password").value
-        
-        const str = input.split("")
-        str.forEach(element => {
-            value += `&#128${element.charCodeAt()} `
-        });
+// Toggle between encrypt and decrypt
+function btnClicking() {
+    document.querySelector("#dec-btn").addEventListener("click", function () {
+        document.querySelector("#decryption").style.display = "flex";
+        document.querySelector("#encryption").style.display = "none";
+        document.querySelector("#enc-btn").style.background = "transparent";
+        document.querySelector("#enc-btn").style.boxShadow = "none";
+        document.querySelector("#dec-btn").style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+        document.querySelector("#dec-btn").style.boxShadow = "0 4px 15px rgba(118, 75, 162, 0.4)";
+        document.querySelector("#main>h1 span img").style.transform = "rotate(180deg)";
+        document.querySelector("#result").style.display = "none";
+    });
 
-        document.querySelector("#result").innerHTML = value
+    document.querySelector("#enc-btn").addEventListener("click", function () {
+        document.querySelector("#encryption").style.display = "flex";
+        document.querySelector("#decryption").style.display = "none";
+        document.querySelector("#dec-btn").style.background = "transparent";
+        document.querySelector("#dec-btn").style.boxShadow = "none";
+        document.querySelector("#enc-btn").style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+        document.querySelector("#enc-btn").style.boxShadow = "0 4px 15px rgba(118, 75, 162, 0.4)";
+        document.querySelector("#main>h1 span img").style.transform = "rotate(0deg)";
+        document.querySelector("#result").style.display = "none";
+    });
+}
 
-        var data = []
-        if(JSON.parse(localStorage.getItem("data1"))){
-            data = JSON.parse(localStorage.getItem("data1"))
-            data.push({"pass": password, "input":input, "value": value})
-        }else{
-            data = [{"pass": password, "input":input, "value": value}]
+btnClicking();
+
+// Encryption function - Convert text to emojis
+function encryption() {
+    document.querySelector("#encrypt-btn").addEventListener("click", function () {
+        const input = txtmsg.value.trim();
+
+        if (!input) {
+            showToast("Please enter some text to encrypt!", false);
+            return;
         }
-    
-        localStorage.setItem("data1", JSON.stringify(data))
 
-    })
+        // Convert each character to its corresponding emoji
+        let emojiResult = "";
+        for (let i = 0; i < input.length; i++) {
+            const charCode = input.charCodeAt(i);
+            // Convert to emoji by adding offset to emoji range (128000+)
+            const emojiCode = 128000 + charCode;
+            emojiResult += String.fromCodePoint(emojiCode) + " ";
+        }
+
+        const resultDiv = document.querySelector("#result");
+        resultDiv.innerHTML = `<button class="copy-btn" id="copy-btn">📋 Copy</button><div id="result-content" style="padding-top: 40px; word-wrap: break-word; font-size: 24px;">${emojiResult.trim()}</div>`;
+        resultDiv.style.display = "block";
+
+        // Save to localStorage for decryption reference
+        const data = {
+            original: input,
+            encrypted: emojiResult.trim(),
+            timestamp: new Date().toISOString()
+        };
+
+        let history = JSON.parse(localStorage.getItem("textEmojiHistory")) || [];
+        history.unshift(data);
+        history = history.slice(0, 50); // Keep last 50 entries
+        localStorage.setItem("textEmojiHistory", JSON.stringify(history));
+
+        showToast("Text encrypted to emojis successfully! ✅");
+        setupCopyButton();
+    });
 }
-encryption()
 
-function decryption(){
-    document.querySelector("#decrypt-btn").addEventListener("click", function(){
-        var value1 = ""
-        var input1 = document.querySelector("#emojimsg").value
-        var pass1 = document.querySelector("#finalpassword").value
-        var user = JSON.parse(localStorage.getItem('data1'))
+encryption();
 
-        var str1 = input1.split(" ")
-        str1.forEach(element => {
-                value1 += `&#${(element.codePointAt(0))} `
-        });
-        console.log(value1)
+// Decryption function - Convert emojis back to text
+function decryption() {
+    document.querySelector("#decrypt-btn").addEventListener("click", function () {
+        const input = emojimsg.value.trim();
 
-        var found;
-        for(let i of user){
-            if(i.value == value1){
-                found = i;
-                console.log(i)
+        if (!input) {
+            showToast("Please paste encrypted emojis to decrypt!", false);
+            return;
+        }
+
+        try {
+            // Split by spaces to get individual emojis
+            const emojis = input.split(" ").filter(e => e.length > 0);
+            let decryptedText = "";
+
+            // Convert each emoji back to its character
+            for (let emoji of emojis) {
+                const emojiCode = emoji.codePointAt(0);
+                // Reverse the encryption: subtract the offset
+                const originalCharCode = emojiCode - 128000;
+                decryptedText += String.fromCharCode(originalCharCode);
             }
-        }
 
-        if (found.value === value1) {
-            document.querySelector("#result").style.display = `block`
-            document.querySelector("#result").style.color = `#333`
-            document.querySelector("#result").innerHTML = found.input
-        } else if(user(user.length).pass === pass1){
-            document.querySelector("#result").style.display = `block`
-            document.querySelector("#result").style.color = `red`
-            document.querySelector("#result").innerHTML = "Wrong password!"
-        } 
-        else {
-            document.querySelector("#result").style.display = `block`
-            document.querySelector("#result").style.color = `red`
-            document.querySelector("#result").innerHTML = "Input not matched!"
+            const resultDiv = document.querySelector("#result");
+
+            if (decryptedText && decryptedText.length > 0) {
+                resultDiv.innerHTML = `<button class="copy-btn" id="copy-btn">📋 Copy</button><div id="result-content" style="padding-top: 40px; word-wrap: break-word;">${decryptedText}</div>`;
+                resultDiv.style.color = "#333";
+                resultDiv.style.display = "block";
+                showToast("Emojis decrypted successfully! ✅");
+            } else {
+                resultDiv.innerHTML = `<button class="copy-btn" id="copy-btn">📋 Copy</button><div id="result-content" style="padding-top: 40px;">Unable to decrypt - invalid emoji format!</div>`;
+                resultDiv.style.color = "#ff6b6b";
+                resultDiv.style.display = "block";
+                showToast("Decryption failed - invalid emoji format!", false);
+            }
+
+            setupCopyButton();
+
+        } catch (error) {
+            console.error("Decryption error:", error);
+            const resultDiv = document.querySelector("#result");
+            resultDiv.innerHTML = `<button class="copy-btn" id="copy-btn">📋 Copy</button><div id="result-content" style="padding-top: 40px;">Error: Unable to decrypt the emojis!</div>`;
+            resultDiv.style.color = "#ff6b6b";
+            resultDiv.style.display = "block";
+            showToast("Decryption error occurred!", false);
+            setupCopyButton();
         }
-    })
+    });
 }
 
-decryption()
+decryption();
 
+// Copy to clipboard function - Only copies the content, not the button
+function setupCopyButton() {
+    const copyBtn = document.getElementById("copy-btn");
+    if (copyBtn) {
+        // Remove existing listeners by cloning
+        const newCopyBtn = copyBtn.cloneNode(true);
+        copyBtn.parentNode.replaceChild(newCopyBtn, copyBtn);
+
+        newCopyBtn.addEventListener("click", function () {
+            // Get only the content div by ID
+            const contentDiv = document.getElementById("result-content");
+            const textToCopy = contentDiv ? contentDiv.textContent.trim() : "";
+
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    newCopyBtn.textContent = "✓ Copied!";
+                    showToast("Copied to clipboard! 📋");
+                    setTimeout(() => {
+                        newCopyBtn.textContent = "📋 Copy";
+                    }, 2000);
+                }).catch(err => {
+                    console.error("Copy failed:", err);
+                    showToast("Failed to copy!", false);
+                });
+            }
+        });
+    }
+}
+
+// Clear buttons
+document.getElementById("clear-enc").addEventListener("click", () => {
+    txtmsg.value = "";
+    encCounter.textContent = "0 characters";
+    document.querySelector("#result").style.display = "none";
+});
+
+document.getElementById("clear-dec").addEventListener("click", () => {
+    emojimsg.value = "";
+    decCounter.textContent = "0 characters";
+    document.querySelector("#result").style.display = "none";
+});

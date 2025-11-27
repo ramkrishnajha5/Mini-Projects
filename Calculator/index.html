@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <meta name="description" content="A beautiful, modern calculator with glassmorphism design. Perform mathematical calculations with an elegant and user-friendly interface.">
+    <title>Calculator - Modern Math Tool</title>
     <!-- CSS File  -->
     <link rel="stylesheet" href="style.css">
     <!-- JS File -->
@@ -13,47 +14,45 @@
 </head>
 <body>
     <div class="head">
-        <div class="heading">
+        <header class="heading">
             <h2 class="heading1">Calculate Your &nbsp;</h2>
             <h2 class="heading2">Mathematical Thoughts</h2>
-        </div>
-        <div class="calc">
+        </header>
+        <main class="calc" role="main" aria-label="Calculator">
             <div class="text-display">
-                <input type="text" name="display" readonly id="inputBox">
+                <input type="text" name="display" readonly id="inputBox" aria-label="Calculator display" placeholder="0">
             </div>
             <div class="buttons">
-                <button class="operator">AC</button>
-                <button class="operator">DE</button>
-                <button class="operator">%</button>
-                <button class="operator">/</button>
+                <button class="operator" aria-label="All Clear">AC</button>
+                <button class="operator" aria-label="Delete">DE</button>
+                <button class="operator" aria-label="Percentage">%</button>
+                <button class="operator" aria-label="Divide">/</button>
             </div>
             <div class="buttons">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button class="operator">*</button>
+                <button aria-label="Seven">7</button>
+                <button aria-label="Eight">8</button>
+                <button aria-label="Nine">9</button>
+                <button class="operator" aria-label="Multiply">*</button>
             </div>
             <div class="buttons">
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button class="operator">-</button>
+                <button aria-label="Four">4</button>
+                <button aria-label="Five">5</button>
+                <button aria-label="Six">6</button>
+                <button class="operator" aria-label="Subtract">-</button>
             </div>
             <div class="buttons">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button class="operator">+</button>
+                <button aria-label="One">1</button>
+                <button aria-label="Two">2</button>
+                <button aria-label="Three">3</button>
+                <button class="operator" aria-label="Add">+</button>
             </div>
             <div class="buttons">
-                <button>00</button>
-                <button>0</button>
-                <button>.</button>
-                <button class="equal">=</button>
+                <button aria-label="Double Zero">00</button>
+                <button aria-label="Zero">0</button>
+                <button aria-label="Decimal point">.</button>
+                <button class="equal" aria-label="Equals">=</button>
             </div>
-            
-        </div>
-        
+        </main>
     </div>
 </body>
 </html>

@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TextEmoji</title>
+    <meta name="description"
+        content="Convert your text to emojis and decrypt emoji messages. A fun and secure way to encode your messages with beautiful emojis.">
+    <title>TextEmoji - Text to Emoji Converter</title>
     <!-- CSS File -->
     <link rel="stylesheet" href="style.css">
     <!-- JS File -->
     <script src="script.js" defer></script>
     <!-- Favicon Icon -->
-    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpOURGmwxf3sxQaKQlnTh51sY34BcbiD47Ug&s">
+    <link rel="icon" type="image/x-icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpOURGmwxf3sxQaKQlnTh51sY34BcbiD47Ug&s">
 </head>
+
 <body>
     <div id="main">
         <h1>Text<span><img src="./img/arrow-back-regular-24.png" alt="Arrow Picture"></span> Emoji</h1>
         <div id="encdec-container">
-            <h3 id="enc-btn"><span><img src="./img/lock-solid-24.png" alt=""></span>Encrypt Text</h3>
-            <h3 id="dec-btn"><span><img src="./img/lock-open-solid-24.png" alt=""></span>Decrypt Text</h3>
+            <h3 id="enc-btn"><span><img src="./img/lock-solid-24.png" alt="Lock"></span>Encrypt Text</h3>
+            <h3 id="dec-btn"><span><img src="./img/lock-open-solid-24.png" alt="Unlock"></span>Decrypt Text</h3>
         </div>
-    
-        <div id="encryption">
-            <h4>1. Type a Message</h4>
-            <textarea placeholder="Write Your Text Here" name="" id="txtmsg" cols="30" rows="10"></textarea>
-            <!-- <h4>2. Set a Password</h4> -->
-            <!-- <input placeholder="E.g. 1234" type="password" name="" id="password"> -->
-            <div class="btn">
-                <button id="encrypt-btn"><span><img src="./img/lock-solid-24.png" alt=""></span>Encrypt Text</button>
+
+        <div class="converter-section">
+            <div id="encryption">
+                <h4>
+                    <span>1. Type a Message</span>
+                    <span class="char-counter" id="enc-counter">0 characters</span>
+                </h4>
+                <textarea placeholder="Write Your Text Here" id="txtmsg" maxlength="1000"></textarea>
+                <div class="btn">
+                    <button id="encrypt-btn"><span><img src="./img/lock-solid-24.png" alt=""></span>Encrypt
+                        Text</button>
+                    <button id="clear-enc" type="button"><span>🗑️</span>Clear</button>
+                </div>
+            </div>
+            <div id="decryption">
+                <h4>
+                    <span>1. Paste Encrypted Emojis</span>
+                    <span class="char-counter" id="dec-counter">0 characters</span>
+                </h4>
+                <textarea placeholder="Paste Your encrypted emojis here" id="emojimsg" maxlength="10000"></textarea>
+                <div class="btn">
+                    <button id="decrypt-btn"><span><img src="./img/lock-open-solid-24.png" alt=""></span>Decrypt
+                        Emojis</button>
+                    <button id="clear-dec" type="button"><span>🗑️</span>Clear</button>
+                </div>
             </div>
         </div>
-        <div id="decryption">
-            <h4>1. Paste encrypted Emojis</h4>
-            <textarea placeholder="Paste Your encryptrd emojis here" name="" id="emojimsg" cols="30" rows="10"></textarea>
-            <!-- <h4>2. Type Your Password</h4> -->
-            <!-- <input type="password" name="" id="finalpassword"> -->
-            <div class="btn">
-                <button id="decrypt-btn"><span><img src="./img/lock-open-solid-24.png" alt=""></span>Decrypt Emojis</button>
-            </div>
+
+        <div id="result">
+            <button class="copy-btn" id="copy-btn">📋 Copy</button>
         </div>
-        <div id="result"></div>
     </div>
 </body>
+
 </html>

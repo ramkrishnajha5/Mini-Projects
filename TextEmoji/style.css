@@ -1,220 +1,411 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-body{
-    height: 120vh;
+
+body {
+    min-height: 100vh;
     width: 100vw;
-    background: #d1dce0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
     color: #333;
+    padding: 20px;
 }
-#main{
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#main {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 30px;
 }
-#main>h1{
-    font-size: 48px;
+
+#main>h1 {
+    font-size: 3rem;
+    font-weight: 800;
     display: flex;
     align-items: center;
+    background: linear-gradient(135deg, #ffd89b 0%, #ff6e7f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 20px rgba(255, 110, 127, 0.3);
+    animation: fadeInDown 0.8s ease-out;
 }
-#main>h1 span{
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#main>h1 span {
     margin: 0 18px;
     display: flex;
     align-items: center;
 }
-#main>h1 span img{
-    transition: 0.3s ease;
+
+#main>h1 span img {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
 }
-#main>#encdec-container{
+
+#main>#encdec-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px;
-    width: 28%;
-    margin: 35px;
-    background: #e3e6e7;
-    border-radius: 8px;
-}
-#main>#encdec-container h3{
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    border-radius: 8px;
-    font-weight: 500;
-    padding: 8px 10px;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-#enc-btn{
-    background: #f8f8f2;
-}
-#encdec-container h3 span{
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-#encdec-container h3 span img{
-    height: 24px;
+    padding: 6px;
+    width: min(90%, 500px);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.8s ease-out 0.2s backwards;
 }
 
-#encryption{
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
-#encryption h4{
+
+#main>#encdec-container h3 {
     font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 12px;
-    color: #757373;
-}
-#encryption textarea{
-    width: 100%;
-    height: 60px;
-    border: 1px solid black;
-    border-radius: 8px;
-    font-size: 17px;
-    padding: 6px 8px;
-    outline: none;
-    background: #f8f8f2;
-    margin-bottom: 16px;
-    color: #333;
-}
-#encryption input{
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 8px;
-    font-size: 17px;
-    padding: 6px 8px;
-    outline: none;
-    background: #f8f8f2;
-    margin-bottom: 24px;
-    color: #333;
-}
-#encryption .btn{
-    width: 100%;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-#encryption button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #111;
-    background: #fbc233;
-    border: none;
-    width: 40%;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 500;
+    border-radius: 50px;
+    padding: 12px 24px;
     cursor: pointer;
-    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: rgba(255, 255, 255, 0.8);
 }
-button>span{
+
+#enc-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+}
+
+#dec-btn {
+    background: transparent;
+}
+
+#dec-btn:hover,
+#enc-btn:hover {
+    transform: scale(1.05);
+}
+
+#encdec-container h3 span {
     display: flex;
+    align-items: center;
     margin-right: 10px;
 }
-button>span img{
+
+#encdec-container h3 span img {
     height: 24px;
+    filter: brightness(0) invert(1);
 }
-#decryption{
-    width: 45%;
+
+.converter-section {
+    width: min(90%, 600px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#encryption,
+#decryption {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    display: none;
+    gap: 16px;
 }
-#decryption h4{
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 12px;
-    color: #757373;
-}
-#decryption textarea{
-    width: 100%;
-    height: 60px;
-    border: 1px solid black;
-    border-radius: 8px;
-    font-size: 17px;
-    padding: 6px 8px;
-    outline: none;
-    background: #f8f8f2;
-    margin-bottom: 16px;
-    color: #333;
-}
-#decryption input{
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 8px;
-    font-size: 17px;
-    padding: 6px 8px;
-    outline: none;
-    background: #f8f8f2;
-    margin-bottom: 24px;
-    color: #333;
-}
-#decryption .btn{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#decryption button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #111;
-    background: #fbc233;
-    border: none;
-    width: 40%;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-}
-button>span{
-    display: flex;
-    margin-right: 10px;
-}
-button>span img{
-    height: 24px;
-}
-#result{
-    padding: 20px;
-    border-radius: 10px;
+
+#encryption h4,
+#decryption h4 {
     font-size: 18px;
-    background: #e3e6e7;
-    border: 1px solid #f8f8f2;
-    width: 45%;
-    margin-top: 30px;
+    font-weight: 600;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.char-counter {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#encryption textarea,
+#decryption textarea {
+    width: 100%;
+    min-height: 120px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    font-size: 16px;
+    padding: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    resize: vertical;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+#encryption textarea:focus,
+#decryption textarea:focus {
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2),
+        0 0 0 3px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+#encryption textarea::placeholder,
+#decryption textarea::placeholder {
+    color: #999;
+}
+
+#encryption .btn,
+#decryption .btn {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+}
+
+#encryption button,
+#decryption button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+}
+
+#encryption button:hover,
+#decryption button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(245, 87, 108, 0.6);
+}
+
+#encryption button:active,
+#decryption button:active {
+    transform: translateY(-1px);
+}
+
+button>span {
+    display: flex;
+    align-items: center;
+}
+
+button>span img {
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+#decryption {
     display: none;
 }
 
+#result {
+    width: min(90%, 600px);
+    padding: 24px;
+    border-radius: 20px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: none;
+    word-wrap: break-word;
+    position: relative;
+    color: #333;
+    font-weight: 500;
+    animation: resultPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes resultPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+}
+
+.copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 255, 136, 0.95);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: slideInRight 0.3s ease-out;
+    z-index: 1000;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
 @media screen and (max-width: 768px) {
-    #main>h1{
-        font-size: 30px;
+    #main>h1 {
+        font-size: 2rem;
     }
-    #main>#encdec-container{
-        width: 92%;
+
+    .converter-section {
+        padding: 20px;
     }
-    #encryption, #decryption, #result{
-        width: 95%;
+
+    #encryption textarea,
+    #decryption textarea {
+        min-height: 100px;
     }
-    #encryption button, #decryption button{
-        width: 60%;
+
+    #encryption .btn,
+    #decryption .btn {
+        flex-direction: column;
+    }
+
+    #encryption button,
+    #decryption button {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    #main>h1 {
+        font-size: 1.5rem;
+    }
+
+    #main>#encdec-container h3 {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+
+    .converter-section {
+        padding: 16px;
+    }
+
+    #result {
+        font-size: 16px;
+        padding: 20px;
+    }
+
+    .toast {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 14px;
     }
 }

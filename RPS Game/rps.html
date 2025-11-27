@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissor</title>
+    <meta name="description"
+        content="Play Rock Paper Scissors game with beautiful animations and score tracking. Challenge the computer in this classic game with a modern twist.">
+    <title>Rock Paper Scissors - Interactive Game</title>
     <!-- CSS File -->
     <link rel="stylesheet" href="rps.css">
     <!-- Link JavaScript File -->
     <script src="rps.js" defer></script>
 </head>
+
 <body>
-    <h1 class="heading">Rock Paper Scissor</h1>
+    <h1 class="heading">Rock Paper Scissors</h1>
     <div class="btn">
-        <button id="rock">✊</button>
-        <button id="paper">🖐️</button>
-        <button id="scissor">✌️</button>
+        <button id="rock" aria-label="Rock">✊</button>
+        <button id="paper" aria-label="Paper">🖐️</button>
+        <button id="scissor" aria-label="Scissors">✌️</button>
     </div>
     <div class="choose">
         <p class="yourChoose"></p>
@@ -22,9 +26,12 @@
     </div>
     <div class="result-box">
         <h1 class="result"></h1>
-        <p class="you"></p>
-        <p class="computer"></p>
-        <button id="restart">RESTART</button>
+        <div class="score-board">
+            <p class="you"></p>
+            <p class="computer"></p>
+        </div>
+        <button id="restart" aria-label="Restart Game">RESTART</button>
     </div>
 </body>
+
 </html>
